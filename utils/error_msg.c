@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   error.msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lallison <lallison@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 16:33:37 by lallison          #+#    #+#             */
-/*   Updated: 2022/06/27 16:33:39 by lallison         ###   ########.fr       */
+/*   Created: 2022/06/27 18:45:08 by lallison          #+#    #+#             */
+/*   Updated: 2022/06/27 18:45:09 by lallison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../includes/cub3d.h"
 
-#include <math.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
+void	error_arg(void)
+{
+	write(2, "\033[0;31mError: wrong number of argument\n\033[0m", 39);
+	exit(1);
+}
 
-/*		./utils/error_msg.c			*/
-void	error_arg(void);
-void	error_file(int flag);
-
-/*		./utils/check_utils.c		*/
-void	check_file_format(char *str, int fd);
-
-#endif
+void	error_file(int flag)
+{
+	if (flag == 0)
+		write(2, "\033[0;31mError: no such file or directory\n\033[0m", 40);
+	else if (flag == 1)
+		write(2, "\033[0;31mError: wrong file format\n\033[0m", 32);
+	exit(2);
+}

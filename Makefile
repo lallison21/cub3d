@@ -1,4 +1,4 @@
-NAME		=	cub3d
+NAME		=	cub3D
 
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
@@ -10,8 +10,8 @@ SRCS_DIR	=	sources/
 UTILS_DIR	=	utils/
 HEADER		=	incudes/cud3d.h
 
-SRCS		=	$(addprefix $(SRCS_DIR),	)
-UTILS		=	$(addprefix $(UTILS_DIR),	)
+SRCS		=	$(addprefix $(SRCS_DIR),	main_cub3d.c	)
+UTILS		=	$(addprefix $(UTILS_DIR),	error_msg.c		)
 
 OBJS		=	$(SRCS:%.c=%.o) $(UTILS:%.c=%.o)
 
@@ -31,22 +31,23 @@ all			:	$(NAME)
 $(NAME)		:	$(OBJS)
 				@make -C minilibx
 				@make -C libft
-				@echo "\n[$(BLUE)CUB3D$(WHITE)] OBJECT FILES CREATED\n\c"
+				@echo "[$(BLUE)CUB3D$(WHITE)] OBJECT FILES CREATED\n\c"
 				@$(CC) $(CFLAGS) $(LIB) $(MLX) $(OBJS) -o $(NAME)
 				@echo "[$(BLUE)CUB3D$(WHITE)] EXECUTABLE FILE CREATED\n\c"
 
 %.o			:	%.c $(HEADER)
 				@$(CC) $(CFLAGS) -I minilibx mlx -c $< -o $(NAME)
+				@echo "$(GREEN)❱$(WHITE)\n\c"
 
 clean		:
-				@make -C minilibx clean
 				@make -C libft clean
 				@$(RM) $(OBJS)
 				@echo "$(YELLOW)Object files deleted$(WHITE)"
 
 fclean		:	clean
+				@make -C minilibx clean
 				@make -C libft fclean
-				@(RM) $(NAME)
+				@$(RM) $(NAME)
 				@echo "$(YELLOW)Executable file deleted$(WHITE)"
 
 re			:	fclean all

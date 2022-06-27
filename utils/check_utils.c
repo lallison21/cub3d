@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lallison <lallison@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 16:33:37 by lallison          #+#    #+#             */
-/*   Updated: 2022/06/27 16:33:39 by lallison         ###   ########.fr       */
+/*   Created: 2022/06/27 19:55:08 by lallison          #+#    #+#             */
+/*   Updated: 2022/06/27 19:55:10 by lallison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../includes/cub3d.h"
 
-#include <math.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
+void	check_file_format(char *str, int fd)
+{
+	int		i;
+	int		j;
+	char	*format;
 
-/*		./utils/error_msg.c			*/
-void	error_arg(void);
-void	error_file(int flag);
-
-/*		./utils/check_utils.c		*/
-void	check_file_format(char *str, int fd);
-
-#endif
+	format = ".cub";
+	i = -1;
+	j = 4;
+	while (str[++i])
+		;
+	while (j >= 0 && str[i--] == format[j--])
+		;
+	if (j == -1)
+		return ;
+	close(fd);
+	error_file(1);
+}
