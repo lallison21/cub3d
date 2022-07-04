@@ -10,8 +10,9 @@ SRCS_DIR	=	sources/
 UTILS_DIR	=	utils/
 HEADER		=	incudes/cud3d.h
 
-SRCS		=	$(addprefix $(SRCS_DIR),	main_cub3d.c	)
-UTILS		=	$(addprefix $(UTILS_DIR),	error_msg.c		)
+SRCS		=	$(addprefix $(SRCS_DIR),	main_cub3d.c	fill_node.c)
+UTILS		=	$(addprefix $(UTILS_DIR),	error_msg.c		check_utils.c	\
+											free_memory_utils.c)
 
 OBJS		=	$(SRCS:%.c=%.o) $(UTILS:%.c=%.o)
 
@@ -34,6 +35,7 @@ $(NAME)		:	$(OBJS)
 				@echo "[$(BLUE)CUB3D$(WHITE)] OBJECT FILES CREATED\n\c"
 				@$(CC) $(CFLAGS) $(LIB) $(MLX) $(OBJS) -o $(NAME)
 				@echo "[$(BLUE)CUB3D$(WHITE)] EXECUTABLE FILE CREATED\n\c"
+				@make -C . clean
 
 %.o			:	%.c $(HEADER)
 				@$(CC) $(CFLAGS) -I minilibx mlx -c $< -o $(NAME)
