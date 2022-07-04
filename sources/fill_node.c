@@ -61,8 +61,6 @@ void	fill_map(t_node *node, char *text, int fd)
 	}
 	node->map = ft_split(map, '\n');
 	free(map);
-	for (int i = 0; node->map[i] != NULL; i++)
-		printf("%s\n", node->map[i]);
 }
 
 void	find_map(char **text, int fd)
