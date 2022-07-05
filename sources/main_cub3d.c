@@ -71,3 +71,6 @@ int	main(int ac, char **av)
 	close(fd);
 	free_node(&node);
 }
+
+//for (int i = 0; node.map[i] != NULL; i++)
+//printf("%s\n", node.map[i]);

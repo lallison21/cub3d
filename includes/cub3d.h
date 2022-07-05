@@ -39,7 +39,7 @@ void	fill_node(int fd, t_node *node);
 char	*get_next_line(int fd);
 
 /*		./utils/check_utils.c			*/
-void	check_full_fill(t_node *node);
+void	check_text(char *text);
 void	check_file_format(char *str, int fd, char *format);
 char	*check_doubly_arguments(t_node *node, char *text, int flag);
 

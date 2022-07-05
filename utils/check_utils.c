@@ -47,3 +47,20 @@ void	check_file_format(char *str, int fd, char *format)
 	close(fd);
 	error_msg(2);
 }
+
+void	check_text(char *text)
+{
+	int	i;
+
+	i = -1;
+	if (!ft_strcmp(text, "\n"))
+		return ;
+	while (text[++i])
+	{
+		if (text[i] != '0' && text[i] != '1' && text[i] != 'N'
+			&& text[i] != 'S' && text[i] != 'W' && text[i] != 'E'
+			&& text[i] != ' ' && text[i] != '\n')
+			return ;
+	}
+	error_msg(3);
+}

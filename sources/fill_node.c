@@ -114,6 +114,7 @@ void	fill_node(int fd, t_node *node)
 		else if (ft_strnstr(text, "F", ft_strlen(text))
 			|| ft_strnstr(text, "C", ft_strlen(text)))
 			fill_color(text, node);
+		check_text(text);
 		free(text);
 		text = get_next_line(fd);
 		if (node->north_texture && node->south_texture && node->west_texture
