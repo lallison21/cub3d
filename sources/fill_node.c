@@ -52,6 +52,13 @@ void	fill_map(t_node *node, char *text, int fd)
 {
 	char	*map;
 
+	while (!ft_strcmp(text, "\n"))
+	{
+		free(text);
+		text = get_next_line(fd);
+	}
+	if (!text)
+		error_msg(5);
 	map = NULL;
 	while (text)
 	{
@@ -63,15 +70,33 @@ void	fill_map(t_node *node, char *text, int fd)
 	free(map);
 }
 
-void	find_map(char **text, int fd)
+void	make_right_square_map(t_node *node, int hight)
 {
-	while (!ft_strcmp(*text, "\n"))
+	int		i;
+	int		width;
+	int		max_width;
+	char	*spcs;
+
+	max_width = 0;
+	while (node->map[++hight])
 	{
-		free(*text);
-		*text = get_next_line(fd);
+		width = ft_strlen(node->map[hight]);
+		if (width > max_width)
+			max_width = width;
 	}
-	if (!*text)
-		error_msg(5);
+	hight = -1;
+	while (node->map[++hight])
+	{
+		width = ft_strlen(node->map[hight]);
+		i = -1;
+		spcs = malloc(sizeof(char) * max_width - width + 1);
+		while (++i < max_width - width)
+			spcs[i] = ' ';
+		spcs[i] = '\0';
+		if (width < max_width)
+			node->map[hight] = ft_strjoin(node->map[hight], spcs);
+		free(spcs);
+	}
 }
 
 void	fill_node(int fd, t_node *node)
@@ -98,13 +123,6 @@ void	fill_node(int fd, t_node *node)
 	if (!node->south_texture || !node->north_texture || !node->west_texture
 		|| !node->east_texture || !node->floor || !node->ceiling)
 		error_msg(3);
-	find_map(&text, fd);
 	fill_map(node, text, fd);
+	make_right_square_map(node, -1);
 }
-
-//printf("NORTH: %s\n", node->north_texture);
-//printf("SOUTH: %s\n", node->south_texture);
-//printf("WEST: %s\n", node->west_texture);
-//printf("EAST: %s\n", node->east_texture);
-//printf("FLOOR: %s\n", node->floor);
-//printf("CEILING: %s\n", node->ceiling);
