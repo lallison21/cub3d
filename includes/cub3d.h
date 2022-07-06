@@ -27,8 +27,10 @@ typedef struct s_node
 	char	*south_texture;
 	char	*west_texture;
 	char	*east_texture;
-	char	*floor;
-	char	*ceiling;
+	int		*floor;
+	int		*ceiling;
+	int		screen_hight;
+	int		screen_width;
 	char	**map;
 }	t_node;
 
@@ -37,9 +39,11 @@ void	fill_node(int fd, t_node *node);
 
 /*		./sources/main_cub3d.c			*/
 char	*get_next_line(int fd);
+int		create_trgb(int t, int r, int g, int b);
 
 /*		./utils/check_utils.c			*/
 void	check_text(char *text);
+void	map_checker(t_node *node);
 void	check_file_format(char *str, int fd, char *format);
 char	*check_doubly_arguments(t_node *node, char *text, int flag);
 

@@ -69,6 +69,7 @@ int	main(int ac, char **av)
 	check_file_format(av[1], fd, ".cub");
 	fill_node(fd, &node);
 	close(fd);
+//	map_checker(&node);
 	free_node(&node);
 }
 

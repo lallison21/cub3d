@@ -32,6 +32,24 @@ void	fill_textures_path(char *text, t_node *node)
 	free_doubly_char(texts);
 }
 
+int	*colot_atoi(t_node *node, char **texts, int flag)
+{
+	int		i;
+	int		*arr;
+	char	*text;
+	char	**color;
+
+	text = check_doubly_arguments(node, texts[1], flag);
+	arr = malloc(sizeof(int) * 3);
+	color = ft_split(text, ',');
+	i = -1;
+	while (++i < 3)
+		arr[i] = ft_atoi(color[i]);
+	free(text);
+	free_doubly_char(color);
+	return (arr);
+}
+
 void	fill_color(char *text, t_node *node)
 {
 	char	**texts;
@@ -39,10 +57,10 @@ void	fill_color(char *text, t_node *node)
 	texts = ft_split(text, ' ');
 	if (texts[2])
 		error_msg(3);
-	if (ft_strcmp(texts[0], "F"))
-		node->floor = check_doubly_arguments(node, texts[1], 4);
-	else if (ft_strcmp(texts[0], "C"))
-		node->ceiling = check_doubly_arguments(node, texts[1], 5);
+	if (!ft_strcmp(texts[0], "F"))
+		node->floor = colot_atoi(node, texts, 4);
+	else if (!ft_strcmp(texts[0], "C"))
+		node->ceiling = colot_atoi(node, texts, 5);
 	else
 		error_msg(3);
 	free_doubly_char(texts);

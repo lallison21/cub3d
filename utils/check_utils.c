@@ -64,3 +64,7 @@ void	check_text(char *text)
 	}
 	error_msg(3);
 }
+
+//void	map_checker(t_node *node)
+//{
+//}
