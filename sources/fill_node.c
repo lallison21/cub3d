@@ -32,24 +32,6 @@ void	fill_textures_path(char *text, t_node *node)
 	free_doubly_char(texts);
 }
 
-int	*colot_atoi(t_node *node, char **texts, int flag)
-{
-	int		i;
-	int		*arr;
-	char	*text;
-	char	**color;
-
-	text = check_doubly_arguments(node, texts[1], flag);
-	arr = malloc(sizeof(int) * 3);
-	color = ft_split(text, ',');
-	i = -1;
-	while (++i < 3)
-		arr[i] = ft_atoi(color[i]);
-	free(text);
-	free_doubly_char(color);
-	return (arr);
-}
-
 void	fill_color(char *text, t_node *node)
 {
 	char	**texts;
@@ -92,26 +74,25 @@ void	make_right_square_map(t_node *node, int hight)
 {
 	int		i;
 	int		width;
-	int		max_width;
 	char	*spcs;
 
-	max_width = 0;
 	while (node->map[++hight])
 	{
 		width = ft_strlen(node->map[hight]);
-		if (width > max_width)
-			max_width = width;
+		if (width > node->map_width)
+			node->map_width = width;
 	}
+	node->map_hight = hight;
 	hight = -1;
 	while (node->map[++hight])
 	{
 		width = ft_strlen(node->map[hight]);
 		i = -1;
-		spcs = malloc(sizeof(char) * max_width - width + 1);
-		while (++i < max_width - width)
+		spcs = malloc(sizeof(char) * node->map_width - width + 1);
+		while (++i < node->map_width - width)
 			spcs[i] = ' ';
 		spcs[i] = '\0';
-		if (width < max_width)
+		if (width < node->map_width)
 			node->map[hight] = ft_strjoin(node->map[hight], spcs);
 		free(spcs);
 	}

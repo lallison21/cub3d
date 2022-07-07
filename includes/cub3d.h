@@ -32,6 +32,8 @@ typedef struct s_node
 	int		screen_hight;
 	int		screen_width;
 	char	**map;
+	int		map_hight;
+	int		map_width;
 }	t_node;
 
 /*		./sources/fill_node.c			*/
@@ -39,7 +41,7 @@ void	fill_node(int fd, t_node *node);
 
 /*		./sources/main_cub3d.c			*/
 char	*get_next_line(int fd);
-int		create_trgb(int t, int r, int g, int b);
+int		*colot_atoi(t_node *node, char **texts, int flag);
 
 /*		./utils/check_utils.c			*/
 void	check_text(char *text);

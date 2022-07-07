@@ -65,6 +65,46 @@ void	check_text(char *text)
 	error_msg(3);
 }
 
-//void	map_checker(t_node *node)
-//{
-//}
+void	check_border(t_node *node, int i, int j)
+{
+	if (i == 0 || i == node->map_hight - 1)
+	{
+		if (j == 0 || j == node->map_width - 1)
+		{
+			if (node->map[i][j] != '1' && node->map[i][j] != ' ')
+				error_msg(5);
+		}
+		else
+			if (node->map[i][j] != '1' && node->map[i][j] != ' ')
+				error_msg(5);
+	}
+	else if (j == 0 || j == node->map_width - 1)
+		if (node->map[i][j] != '1' && node->map[i][j] != ' ')
+			error_msg(5);
+}
+
+void	check_inside(t_node *node, int i, int j)
+{
+}
+
+void	map_checker(t_node *node)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (node->map[++i])
+	{
+		j = -1;
+		while (node->map[i][++j])
+		{
+			if (node->map[i][j] != '0' && node->map[i][j] != '1'
+				&& node->map[i][j] != ' ' && node->map[i][j] != 'N'
+				&& node->map[i][j] != 'S' && node->map[i][j] != 'E'
+				&& node->map[i][j] != 'W')
+				error_msg(5);
+			check_border(node, i, j);
+			check_inside(node, i, j);
+		}
+	}
+}

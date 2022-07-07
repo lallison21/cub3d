@@ -52,7 +52,29 @@ void	init_node(t_node *node)
 	node->east_texture = NULL;
 	node->floor = NULL;
 	node->ceiling = NULL;
+	node->screen_width = 1920;
+	node->screen_hight = 1080;
 	node->map = NULL;
+	node->map_hight = 0;
+	node->map_width = 0;
+}
+
+int	*colot_atoi(t_node *node, char **texts, int flag)
+{
+	int		i;
+	int		*arr;
+	char	*text;
+	char	**color;
+
+	text = check_doubly_arguments(node, texts[1], flag);
+	arr = malloc(sizeof(int) * 3);
+	color = ft_split(text, ',');
+	i = -1;
+	while (++i < 3)
+		arr[i] = ft_atoi(color[i]);
+	free(text);
+	free_doubly_char(color);
+	return (arr);
 }
 
 int	main(int ac, char **av)
@@ -69,9 +91,12 @@ int	main(int ac, char **av)
 	check_file_format(av[1], fd, ".cub");
 	fill_node(fd, &node);
 	close(fd);
-//	map_checker(&node);
+	map_checker(&node);
 	free_node(&node);
 }
 
 //for (int i = 0; node.map[i] != NULL; i++)
 //printf("%s\n", node.map[i]);
+
+//for (int i = 0; map[i] != NULL; i++)
+//printf("%s\n", map[i]);
