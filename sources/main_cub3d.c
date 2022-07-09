@@ -30,36 +30,22 @@ char	*get_next_line(int fd)
 	return (res);
 }
 
-int	create_trgb(int t, int r, int g, int b)
-{
-	while (r > 255 && g > 255 && b > 255)
-	{
-		if (r > 255)
-			r = r - 255;
-		else if (g > 255)
-			g = g - 255;
-		else if (b > 255)
-			b = b - 255;
-	}
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
 void	init_node(t_node *node)
 {
 	node->north_texture = NULL;
 	node->south_texture = NULL;
 	node->west_texture = NULL;
 	node->east_texture = NULL;
-	node->floor = NULL;
-	node->ceiling = NULL;
-	node->screen_width = 1920;
-	node->screen_hight = 1080;
+	node->floor = 0;
+	node->ceiling = 0;
+	node->width = 1920;
+	node->hight = 1080;
 	node->map = NULL;
 	node->map_hight = 0;
 	node->map_width = 0;
 }
 
-int	*colot_atoi(t_node *node, char **texts, int flag)
+int	create_colot(t_node *node, char **texts, int flag)
 {
 	int		i;
 	int		*arr;
@@ -74,7 +60,9 @@ int	*colot_atoi(t_node *node, char **texts, int flag)
 		arr[i] = ft_atoi(color[i]);
 	free(text);
 	free_doubly_char(color);
-	return (arr);
+	i = create_trgb(0, arr[0], arr[1], arr[2]);
+	free(arr);
+	return (i);
 }
 
 int	main(int ac, char **av)
@@ -92,6 +80,7 @@ int	main(int ac, char **av)
 	fill_node(fd, &node);
 	close(fd);
 	map_checker(&node);
+	raycasting(&node);
 	free_node(&node);
 }
 

@@ -40,9 +40,9 @@ void	fill_color(char *text, t_node *node)
 	if (texts[2])
 		error_msg(3);
 	if (!ft_strcmp(texts[0], "F"))
-		node->floor = colot_atoi(node, texts, 4);
+		node->floor = create_colot(node, texts, 4);
 	else if (!ft_strcmp(texts[0], "C"))
-		node->ceiling = colot_atoi(node, texts, 5);
+		node->ceiling = create_colot(node, texts, 5);
 	else
 		error_msg(3);
 	free_doubly_char(texts);

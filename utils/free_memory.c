@@ -28,7 +28,5 @@ void	free_node(t_node *node)
 	free(node->south_texture);
 	free(node->east_texture);
 	free(node->west_texture);
-	free(node->floor);
-	free(node->ceiling);
 	free_doubly_char(node->map);
 }

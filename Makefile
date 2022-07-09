@@ -10,9 +10,10 @@ SRCS_DIR	=	sources/
 UTILS_DIR	=	utils/
 HEADER		=	incudes/cud3d.h
 
-SRCS		=	$(addprefix $(SRCS_DIR),	main_cub3d.c	fill_node.c)
+SRCS		=	$(addprefix $(SRCS_DIR),	main_cub3d.c	fill_node.c		\
+											raycasting.c	)
 UTILS		=	$(addprefix $(UTILS_DIR),	error_msg.c		check_utils.c	\
-											free_memory_utils.c)
+											free_memory.c	)
 
 OBJS		=	$(SRCS:%.c=%.o) $(UTILS:%.c=%.o)
 

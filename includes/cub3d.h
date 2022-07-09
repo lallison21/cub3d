@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <string.h>
 # include "../libft/libft.h"
+# include "../minilibx/mlx.h"
 
 typedef struct s_node
 {
@@ -27,21 +28,34 @@ typedef struct s_node
 	char	*south_texture;
 	char	*west_texture;
 	char	*east_texture;
-	int		*floor;
-	int		*ceiling;
-	int		screen_hight;
-	int		screen_width;
+	int		floor;
+	int		ceiling;
+	int		hight;
+	int		width;
 	char	**map;
 	int		map_hight;
 	int		map_width;
 }	t_node;
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_lenth;
+	int		endian;
+}	t_data;
 
 /*		./sources/fill_node.c			*/
 void	fill_node(int fd, t_node *node);
 
 /*		./sources/main_cub3d.c			*/
 char	*get_next_line(int fd);
-int		*colot_atoi(t_node *node, char **texts, int flag);
+int		create_colot(t_node *node, char **texts, int flag);
+
+/*		./sources/raycasting.c			*/
+void	raycasting(t_node *node);
+int		create_trgb(int t, int r, int g, int b);
 
 /*		./utils/check_utils.c			*/
 void	check_text(char *text);
