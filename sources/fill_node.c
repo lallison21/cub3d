@@ -117,11 +117,12 @@ void	fill_node(int fd, t_node *node)
 		free(text);
 		text = get_next_line(fd);
 		if (node->north_texture && node->south_texture && node->west_texture
-			&&node->east_texture && node->floor && node->ceiling)
+			&&node->east_texture && node->floor != -1 && node->ceiling != -1)
 			break ;
 	}
+	printf("floor: %d\nceiling: %d\n", node->floor, node->ceiling);
 	if (!node->south_texture || !node->north_texture || !node->west_texture
-		|| !node->east_texture || !node->floor || !node->ceiling)
+		|| !node->east_texture || node->floor == -1 || node->ceiling == -1)
 		error_msg(3);
 	fill_map(node, text, fd);
 	make_right_square_map(node, -1);

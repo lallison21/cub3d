@@ -53,18 +53,24 @@ void	draw_floor_and_ceiling(t_node *node, t_data img)
 	}
 }
 
+int	close_window(t_data *img)
+{
+	mlx_destroy_image(img->mlx, img->img);
+	mlx_destroy_window(img->mlx, img->win);
+	exit (0);
+}
+
 void	raycasting(t_node *node)
 {
-	void	*mlx;
-	void	*mlx_win;
 	t_data	img;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, node->width, node->hight, "CUB_3D");
-	img.img = mlx_new_image(mlx, node->width, node->hight);
+	img.mlx = mlx_init();
+	img.win = mlx_new_window(img.mlx, node->width, node->hight, "CUB_3D");
+	img.img = mlx_new_image(img.mlx, node->width, node->hight);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenth,
 			&img.endian);
+	mlx_hook(img.win, 17, 1L << 0, close_window, &img);
 	draw_floor_and_ceiling(node, img);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
+	mlx_loop(img.mlx);
 }

@@ -40,6 +40,8 @@ typedef struct s_node
 typedef struct s_data
 {
 	void	*img;
+	void	*mlx;
+	void	*win;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_lenth;

@@ -22,9 +22,9 @@ char	*check_doubly_arguments(t_node *node, char *text, int flag)
 		return (ft_substr(text, 0, ft_strlen(text) - 1));
 	else if (flag == 3 && !node->east_texture)
 		return (ft_substr(text, 0, ft_strlen(text) - 1));
-	else if (flag == 4 && !node->floor)
+	else if (flag == 4 && node->floor == -1)
 		return (ft_substr(text, 0, ft_strlen(text) - 1));
-	else if (flag == 5 && !node->ceiling)
+	else if (flag == 5 && node->ceiling == -1)
 		return (ft_substr(text, 0, ft_strlen(text) - 1));
 	else
 		error_msg(4);

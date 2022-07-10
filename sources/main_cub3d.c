@@ -36,8 +36,8 @@ void	init_node(t_node *node)
 	node->south_texture = NULL;
 	node->west_texture = NULL;
 	node->east_texture = NULL;
-	node->floor = 0;
-	node->ceiling = 0;
+	node->floor = -1;
+	node->ceiling = -1;
 	node->width = 1920;
 	node->hight = 1080;
 	node->map = NULL;
