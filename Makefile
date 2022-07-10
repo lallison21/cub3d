@@ -11,7 +11,8 @@ UTILS_DIR	=	utils/
 HEADER		=	incudes/cud3d.h
 
 SRCS		=	$(addprefix $(SRCS_DIR),	main_cub3d.c	fill_node.c		\
-											raycasting.c	)
+											raycasting.c	mlx_hooks.c		\
+											minimap.c		)
 UTILS		=	$(addprefix $(UTILS_DIR),	error_msg.c		check_utils.c	\
 											free_memory.c	)
 

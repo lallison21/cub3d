@@ -120,7 +120,6 @@ void	fill_node(int fd, t_node *node)
 			&&node->east_texture && node->floor != -1 && node->ceiling != -1)
 			break ;
 	}
-	printf("floor: %d\nceiling: %d\n", node->floor, node->ceiling);
 	if (!node->south_texture || !node->north_texture || !node->west_texture
 		|| !node->east_texture || node->floor == -1 || node->ceiling == -1)
 		error_msg(3);

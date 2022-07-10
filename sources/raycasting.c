@@ -53,20 +53,6 @@ void	draw_floor_and_ceiling(t_node *node, t_data img)
 	}
 }
 
-int	close_window(t_data *img)
-{
-	mlx_destroy_image(img->mlx, img->img);
-	mlx_destroy_window(img->mlx, img->win);
-	exit (0);
-}
-
-int	key_hook(int keycode, t_data *img)
-{
-	if (keycode == 53)
-		close_window(img);
-	return (0);
-}
-
 void	raycasting(t_node *node)
 {
 	t_data	img;
@@ -79,6 +65,7 @@ void	raycasting(t_node *node)
 	mlx_key_hook(img.win, key_hook, &img);
 	mlx_hook(img.win, 17, 1L << 0, close_window, &img);
 	draw_floor_and_ceiling(node, img);
+	draw_minimap(node, img);
 	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
 	mlx_loop(img.mlx);
 }

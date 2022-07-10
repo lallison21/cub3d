@@ -48,27 +48,35 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
-/*		./sources/fill_node.c			*/
+/*		../sources/fill_node.c			*/
 void	fill_node(int fd, t_node *node);
 
-/*		./sources/main_cub3d.c			*/
+/*		../sources/main_cub3d.c			*/
 char	*get_next_line(int fd);
 int		create_colot(t_node *node, char **texts, int flag);
 
-/*		./sources/raycasting.c			*/
+/*		../sources/minimap.c			*/
+void	draw_minimap(t_node *node, t_data img);
+
+/*		../sources/mlx_hooks.c			*/
+int		close_window(t_data *img);
+int		key_hook(int keycode, t_data *img);
+
+/*		../sources/raycasting.c			*/
 void	raycasting(t_node *node);
 int		create_trgb(int t, int r, int g, int b);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-/*		./utils/check_utils.c			*/
+/*		../utils/check_utils.c			*/
 void	check_text(char *text);
 void	map_checker(t_node *node);
 void	check_file_format(char *str, int fd, char *format);
 char	*check_doubly_arguments(t_node *node, char *text, int flag);
 
-/*		./utils/error_msg.c				*/
+/*		../utils/error_msg.c			*/
 void	error_msg(int flag);
 
-/*		./utils/free_memory_utils.c		*/
+/*		../utils/free_memory_utils.c	*/
 void	free_node(t_node *node);
 void	free_doubly_char(char **str);
 
